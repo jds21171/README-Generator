@@ -50,17 +50,21 @@ inquirer
             message: "Input questions here.",
             name: "questions"
         }
-    ]);
+    ])
+    .then(results => {
+        // fs.writeFile("README.md", function(err) {
+        //     if (err) {
+        //         console.log(err);
+        //         return;
+        //     } else {
 
-
-
-
-
-
-fs.writeFile("README.md", process.argv[2], function(err) {
-    if (err) {
-        console.log(err);
-    } else {
-        console.log("Success!");
-    }
-});
+        //         console.log("Success!");
+        //     }
+        // });
+        console.log("Success!")
+    })
+    .catch (error => {
+        if (error) {
+            console.log(error);
+        }
+    });
