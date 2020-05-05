@@ -1,5 +1,34 @@
 var fs = require('fs');
-var cli = require('./CLI')
+var cli = require('./CLI');
+var inquirer = require('inquirer');
+
+
+inquirer
+    .prompt([
+        {
+            type: "",
+            message: "",
+            name: ""
+        },
+        {
+            type: "",
+            message: "",
+            name: ""
+        },
+        {
+            type: "",
+            message: "",
+            name: ""
+        },
+        {
+            type: "",
+            message: "",
+            name: ""
+        }
+    ]);
+
+
+
 
 
 
