@@ -1,6 +1,10 @@
 var cli = require('./CLI');
-let generateReadme = cli.generateReadme;
+const generateReadme = cli.generateReadme;
+
 var inquirer = require('inquirer');
+var fs = require('fs');
+
+// var axios = require('axios');
 
 inquirer
     .prompt([
@@ -51,17 +55,36 @@ inquirer
         }
     ])
     .then(answer => {
-        generateReadme((answer) => {
-            return 
-            `
+        const readmeContent = 
+`# ${answer.title}
 
+${answer.description}
 
-            `
+${answer.tableOfContents}
+
+## Installation
+- ${answer.installation}
+
+${answer.usage}
+
+${answer.liscense}
+
+${answer.contributers}
+
+${answer.tests}
+
+${answer.questions}`;
+        generateReadme();
+        fs.appendFile("README.md", readmeContent, function(err) {
+            if (err) {
+                console.log(err);
+                return;
+            } else {
+                console.log("Appended!");
+            }
         })
-        console.log("Success!")
-    })
-    .catch (error => {
-        if (error) {
-            console.log(error);
+    }).catch(err => {
+        if (err) {
+            console.log(err);
         }
     });
