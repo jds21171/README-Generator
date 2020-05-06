@@ -4,7 +4,25 @@ const generateReadme = cli.generateReadme;
 var inquirer = require('inquirer');
 var fs = require('fs');
 
-// var axios = require('axios');
+var axios = require('axios').default;
+
+// Still working on getting the GitHub API working correctly below.
+// inquirer
+//     .prompt([
+//         {
+//             type: "input",
+//             message: "What is your GitHub username?",
+//             name: "username"
+//         },
+//         {
+//             type: "input",
+//             message: "What is your GitHub email?",
+//             name: "description"
+//         }
+
+
+
+
 
 inquirer
     .prompt([
@@ -58,21 +76,28 @@ inquirer
         const readmeContent = 
 `# ${answer.title}
 
+## Description
 ${answer.description}
 
+##Table of Contents
 ${answer.tableOfContents}
 
 ## Installation
 - ${answer.installation}
 
+## Usage
 ${answer.usage}
 
+## Liscense
 ${answer.liscense}
 
+## Contributers
 ${answer.contributers}
 
+## Tests
 ${answer.tests}
 
+## Questions
 ${answer.questions}`;
         generateReadme();
         fs.appendFile("README.md", readmeContent, function(err) {
