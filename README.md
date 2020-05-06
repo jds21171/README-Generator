@@ -69,4 +69,3 @@ WHEN prompted for the developer's GitHub username and repo specific information
 
 THEN a README for the repo is generated
 ```
-- - -

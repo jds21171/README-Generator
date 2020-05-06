@@ -1,7 +1,6 @@
-var fs = require('fs');
 var cli = require('./CLI');
+let generateReadme = cli.generateReadme;
 var inquirer = require('inquirer');
-
 
 inquirer
     .prompt([
@@ -51,16 +50,14 @@ inquirer
             name: "questions"
         }
     ])
-    .then(results => {
-        // fs.writeFile("README.md", function(err) {
-        //     if (err) {
-        //         console.log(err);
-        //         return;
-        //     } else {
+    .then(answer => {
+        generateReadme((answer) => {
+            return 
+            `
 
-        //         console.log("Success!");
-        //     }
-        // });
+
+            `
+        })
         console.log("Success!")
     })
     .catch (error => {
