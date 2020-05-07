@@ -6,25 +6,21 @@ var fs = require('fs');
 
 var axios = require('axios').default;
 
-// Still working on getting the GitHub API working correctly below.
-// inquirer
-//     .prompt([
-//         {
-//             type: "input",
-//             message: "What is your GitHub username?",
-//             name: "username"
-//         },
-//         {
-//             type: "input",
-//             message: "What is your GitHub email?",
-//             name: "description"
-//         }
-
-
-
-
-
 inquirer
+  .prompt({
+    message: "Enter your GitHub username:",
+    name: "username"
+  })
+  .then(function({ username }) {
+    const queryUrl = `https://api.github.com/users/${username}`;
+
+    axios.get(queryUrl).then(function(res) {
+      const githubAvitar = res.data.avatar_url;
+      console.log(`Your GitHub Avitar: ${githubAvitar}`);
+      const githubEmail = res.data.email;
+      console.log(`Your GitHub email: ${githubEmail}`);
+
+      inquirer
     .prompt([
         {
             type: "input",
@@ -80,25 +76,27 @@ inquirer
 ${answer.description}
 
 ##Table of Contents
-${answer.tableOfContents}
+- ${answer.tableOfContents}
 
 ## Installation
 - ${answer.installation}
 
 ## Usage
-${answer.usage}
+- ${answer.usage}
 
 ## Liscense
-${answer.liscense}
+- ${answer.liscense}
 
 ## Contributers
 ${answer.contributers}
 
 ## Tests
-${answer.tests}
+- ${answer.tests}
 
 ## Questions
-${answer.questions}`;
+${answer.questions}
+- ${githubAvitar}
+- ${githubEmail}`;
         generateReadme();
         fs.appendFile("README.md", readmeContent, function(err) {
             if (err) {
@@ -113,3 +111,6 @@ ${answer.questions}`;
             console.log(err);
         }
     });
+      });
+    });
+
